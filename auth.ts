@@ -13,6 +13,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   }), 
   callbacks: {
     async session({ session, user }) {
+
+      session.user.id = user.id;
       const signingSecret = process.env.SUPABASE_JWT_SECRET
       if (signingSecret) {
         const payload = {

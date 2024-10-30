@@ -7,7 +7,6 @@ export default async function Page() {
   const session = await auth();
   
   // Sample usage of querying db
-  
   // const accessToken = session?.supabaseAccessToken;
   // const supabase = createClient(
   //   process.env.NEXT_PUBLIC_SUPABASE_URL!,
