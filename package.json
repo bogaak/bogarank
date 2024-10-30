@@ -9,12 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "jose": "^5.9.6",
     "next": "15.0.1",
     "next-auth": "^5.0.0-beta.25",
     "react": "19.0.0-rc-69d4b800-20241021",
     "react-dom": "19.0.0-rc-69d4b800-20241021"
   },
   "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.7",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

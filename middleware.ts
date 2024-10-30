@@ -1,12 +1,11 @@
+import { auth } from "@/auth"
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
-import { auth } from "@/auth"
- 
 export default auth((req) => {
   if (!req.auth && req.nextUrl.pathname !== "/") {
     const newUrl = new URL("/", req.nextUrl.origin)
-    return Response.redirect(newUrl)
+    return NextResponse.redirect(newUrl)
   }
 })
 
