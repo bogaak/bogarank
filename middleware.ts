@@ -7,6 +7,11 @@ export default auth((req) => {
     const newUrl = new URL("/", req.nextUrl.origin)
     return NextResponse.redirect(newUrl)
   }
+
+  if (req.auth && req.nextUrl.pathname === "/"){
+    const newUrl = new URL("/home", req.nextUrl.origin)
+    return NextResponse.redirect(newUrl)
+  }
 })
 
 export const config = {
