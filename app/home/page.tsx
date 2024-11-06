@@ -2,6 +2,8 @@ import { SignOut } from "@/components/sign-out";
 import { auth } from "@/auth"
 import { createClient } from "@supabase/supabase-js";
 import { Database } from './database.types'
+import { redirect } from 'next/navigation'
+
 
 
 export default async function Page() {
@@ -24,11 +26,15 @@ export default async function Page() {
 
   const { data, error } = await supabase.from("users").select("*").eq('id', session?.user?.id); 
 
-  const test = data ? data[0].email : 'no_email';
+  if (data && data[0].display_name.length === 0){
+      redirect('/signup')
+  }
+
+  const displayName = data ? data[0].display_name : 'no_display_name';
   
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <h1>Welcome to boga rank, {test}! Thanks for coming!</h1>
+      <h1>Welcome to boga rank, {displayName}! Thanks for coming!</h1>
       <SignOut></SignOut>
     </div>
   );
