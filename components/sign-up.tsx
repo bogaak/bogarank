@@ -1,7 +1,7 @@
 import { updateDisplayName } from "@/app/lib/actions"
 import { auth } from "@/auth"
 
-export async function  SignUp() {
+export async function SignUp() {
 
     const session = await auth();
     const updateDisplayNameWithId = updateDisplayName.bind(null, session?.user?.id!)

@@ -9,6 +9,45 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      games: {
+        Row: {
+          genres: string[] | null
+          id: number
+          image: string | null
+          name: string | null
+          publisher: string | null
+        }
+        Insert: {
+          genres?: string[] | null
+          id?: number
+          image?: string | null
+          name?: string | null
+          publisher?: string | null
+        }
+        Update: {
+          genres?: string[] | null
+          id?: number
+          image?: string | null
+          name?: string | null
+          publisher?: string | null
+        }
+        Relationships: []
+      }
+      user_ranks: {
+        Row: {
+          games: string[] | null
+          id: string
+        }
+        Insert: {
+          games?: string[] | null
+          id: string
+        }
+        Update: {
+          games?: string[] | null
+          id?: string
+        }
+        Relationships: []
+      }
       users: {
         Row: {
           display_name: string | null
