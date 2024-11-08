@@ -1,5 +1,4 @@
 import { SignUp } from "@/components/sign-up";
-import { Sign } from "crypto";
 
 
 export default async function Page() {

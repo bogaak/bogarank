@@ -35,15 +35,15 @@ export type Database = {
       }
       user_ranks: {
         Row: {
-          games: string[] | null
+          games: Json[] | null
           id: string
         }
         Insert: {
-          games?: string[] | null
+          games?: Json[] | null
           id: string
         }
         Update: {
-          games?: string[] | null
+          games?: Json[] | null
           id?: string
         }
         Relationships: []
