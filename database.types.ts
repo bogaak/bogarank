@@ -11,25 +11,34 @@ export type Database = {
     Tables: {
       games: {
         Row: {
-          genres: string[] | null
+          cover: number | null
+          first_release_date: number | null
+          genres: number[] | null
           id: number
-          image: string | null
+          involved_companies: number[] | null
           name: string | null
-          publisher: string | null
+          platforms: number[] | null
+          summary: string | null
         }
         Insert: {
-          genres?: string[] | null
+          cover?: number | null
+          first_release_date?: number | null
+          genres?: number[] | null
           id?: number
-          image?: string | null
+          involved_companies?: number[] | null
           name?: string | null
-          publisher?: string | null
+          platforms?: number[] | null
+          summary?: string | null
         }
         Update: {
-          genres?: string[] | null
+          cover?: number | null
+          first_release_date?: number | null
+          genres?: number[] | null
           id?: number
-          image?: string | null
+          involved_companies?: number[] | null
           name?: string | null
-          publisher?: string | null
+          platforms?: number[] | null
+          summary?: string | null
         }
         Relationships: []
       }
