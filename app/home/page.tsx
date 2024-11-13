@@ -26,7 +26,7 @@ export default async function Page() {
     }
   )
 
-  const { data, error } = await supabase.from("users").select("*").eq('id', session?.user?.id); 
+  const { data, error } = await supabase.from("users").select("*").eq('id', session?.user?.id);
 
   if (data && data[0].display_name.length === 0){
       redirect('/signup')

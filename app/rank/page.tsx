@@ -23,7 +23,7 @@ export default async function Page() {
     }
   )
 
-  const { data, error } = await supabase.from("games").select("name, id");
+  const { data, error } = await supabase.from("games").select("name, id").limit(10).order("id", {ascending: true});
 
   
   const result = await supabase.from("user_ranks").select("games").eq('id', session?.user?.id);

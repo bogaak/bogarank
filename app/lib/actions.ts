@@ -32,7 +32,7 @@ export async function updateDisplayName(id: string, formData: FormData) {
   redirect('/home');
 }
 
-export async function rankGame(game_id: Database.games.id, game_name: Database.games.name) {
+export async function rankGame(game_list: Database.user_ranks.games) {
   // Take displayName from form and then add it to supabase. 
   const session = await auth();
   
@@ -49,20 +49,6 @@ export async function rankGame(game_id: Database.games.id, game_name: Database.g
       },
     }
   )
-
-  const getUserArray = await supabase.from("user_ranks").select("games").eq('id', session?.user?.id);
-
-  let currArray = getUserArray.data![0]["games"];
-
-  if (currArray === null){
-    currArray = [{name: game_name, id: game_id}];
-  }
-
-  else{
-    currArray.push({name: game_name, id: game_id});
-  }
   
-  const {data, error} = await supabase.from("user_ranks").update({games: currArray}).eq('id', session?.user?.id);
-
-  revalidatePath('/rank');
+  const {data, error} = await supabase.from("user_ranks").update({games: game_list}).eq('id', session?.user?.id);
 }
