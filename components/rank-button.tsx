@@ -1,14 +1,22 @@
 'use client';
 
-import { rankGame } from "@/app/lib/actions";
+import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 
 function RankButton(props: any) {
+  const searchParams = useSearchParams();
+  const params = new URLSearchParams(searchParams);
 
-  const rankGameWithGame = rankGame.bind(null, props.game_id, props.name)
+  params.set('id', props.game_id);
+  params.set('game', props.name)
+  const path = `/ranking?${params.toString()}`;
+  
   return (
-    <button onClick={rankGameWithGame}>
+    <Link href={path}>
+    <button>
         {props.name} 
     </button>
+    </Link>
   );
 }
 

@@ -30,14 +30,14 @@ export async function DisplayRanks() {
     }
 
     else{
-        // const listItems = data![0].games.map((game: Database.user_ranks.games) => (
-        //     <li key={game.id}>
-        //         {game.name}
-        //     </li>
-        // ))
+        const listItems = data![0].games.map((game: Database.user_ranks.games) => (
+            <li key={game.id}>
+                {game.name}
+            </li>
+        ))
         return (
             <div>
-                {/* <ul>{listItems}</ul> */}
+                <ul>{listItems}</ul>
             </div>
           )
     }
