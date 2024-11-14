@@ -9,7 +9,9 @@ export async function SignUp() {
   return (
     <form action={updateDisplayNameWithId}>
         <label>Enter a display name below...</label>
-        <input type="text" id="display_name" name="display_name" required/>
+        <div className=" focus: text-stone-950">
+          <input type="text" id="display_name" name="display_name" required/>
+        </div>
         <button type="submit">Submit</button>
     </form>
   )

@@ -2,10 +2,20 @@ import { auth } from "@/auth"
 import { createClient } from "@supabase/supabase-js";
 import { Database } from './database.types'
 import { redirect } from 'next/navigation'
+import Search from "@/components/search"
+import { fetchGamesPages } from "../lib/data";
+import Pagination from "@/components/pagination";
+import { DisplayGames } from "@/components/display-games";
 
-
-
-export default async function Page() {
+export default async function Page(props: {
+  searchParams?: Promise<{
+    query?: string;
+    page?: string;
+  }>;
+}) {
+  const searchParams = await props.searchParams;
+  const query = searchParams?.query || '';
+  const currentPage = Number(searchParams?.page) || 1;
 
   const session = await auth();
   
@@ -23,12 +33,21 @@ export default async function Page() {
   )
 
   const { data, error } = await supabase.from("users").select("*").eq('id', session?.user.name); 
-
-  const displayName = data ? data[0].display_name : 'no_display_name';
+  const totalPages = await fetchGamesPages(query);
   
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+    <div>
+    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <h1> Search for a game here!</h1>
+      <Search placeholder="Search for a game here..."></Search>
+      <p></p>
+      <DisplayGames query={query} currentPage={currentPage}></DisplayGames>
+      <p></p>
+      <p></p>
+      <div className="items-end">
+        <Pagination totalPages={totalPages}></Pagination>
+      </div>
+    </div>
     </div>
   );
 }

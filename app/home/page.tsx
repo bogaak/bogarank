@@ -8,9 +8,6 @@ import { SearchGame } from "@/components/redirect-search"
 
 
 export default async function Page() {
-
-  
-
   const session = await auth();
   
   const accessToken = session?.supabaseAccessToken;
