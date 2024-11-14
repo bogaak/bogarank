@@ -5,7 +5,9 @@ import { Database } from './database.types'
 const ITEMS_PER_PAGE = 10; // temp decision, may adjust later. 
 
 export async function fetchGamesPages(query: string) {
-    
+    const trimmed = query.trim();
+    const formattedQuery = trimmed.replace(/\s/g, "+");
+
     const session = await auth();
 
     const accessToken = session?.supabaseAccessToken;
@@ -21,13 +23,16 @@ export async function fetchGamesPages(query: string) {
         }
     )
         
-    const { data, count, error } = await supabase.from("games").select("*", { count: 'exact', head: true}).ilike('name', `%${query}%`);
+    const { data, count, error } = await supabase.from("games").select("*", { count: 'exact', head: true}).textSearch('fts', formattedQuery);
     const totalPages = Math.ceil(Number(count) / ITEMS_PER_PAGE);
     
     return totalPages;
 }
 
 export async function fetchGames(query: string, currentPage: number){
+    const trimmed = query.trim();
+    const formattedQuery = trimmed.replace(/\s/g, "+");
+
     const session = await auth();
 
     const accessToken = session?.supabaseAccessToken;
@@ -44,7 +49,7 @@ export async function fetchGames(query: string, currentPage: number){
     )
     
     const offset = (currentPage-1) * ITEMS_PER_PAGE;
-    const { data, error } = await supabase.from("games").select("id, name").ilike('name', `%${query}%`).range(offset, offset + ITEMS_PER_PAGE - 1).order('name', {ascending: true});
+    const { data, error } = await supabase.from("games").select("id, name").textSearch('fts', formattedQuery).range(offset, offset + ITEMS_PER_PAGE - 1).order('name', {ascending: true});
 
     return data;
 }
