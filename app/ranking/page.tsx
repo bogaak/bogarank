@@ -5,8 +5,7 @@ import { redirect } from 'next/navigation'
 import RankButton from "@/components/rank-button";
 import RankingGame from "@/components/rank-game";
 import { rankGame } from "../lib/actions";
-
-
+import { useEffect } from "react";
 
 export default async function Page(props: {
     searchParams?: Promise<{
@@ -38,10 +37,14 @@ export default async function Page(props: {
 
   if (games_list === null){
     games_list = [{id: id, name: game}]; // maybe add a prompt to notify user that since this is the first ranked one, we dont need to actually do binary search...
-    rankGame(games_list)
+    rankGame(games_list);
     redirect("/home"); // when u insert, it displays an empty screen, then redirects. Need to fix so that it displays something maybe...
   }
 
+  // If the game is already in the list, 
+  if (games_list.some((g: { id: string }) => g.id === id)) {
+    redirect("/already-exists");
+  }
   
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
