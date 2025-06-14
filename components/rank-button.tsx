@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
+// Button to rank a game. It will redirect to the ranking page with the game id and name as search params.
 function RankButton(props: any) {
   const searchParams = useSearchParams();
   const params = new URLSearchParams(searchParams);

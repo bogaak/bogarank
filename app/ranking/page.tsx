@@ -2,11 +2,10 @@ import { auth } from "@/auth"
 import { createClient } from "@supabase/supabase-js";
 import { Database } from './database.types'
 import { redirect } from 'next/navigation'
-import RankButton from "@/components/rank-button";
 import RankingGame from "@/components/rank-game";
 import { rankGame } from "../lib/actions";
-import { useEffect } from "react";
 
+// Essentially page where user interacts with binary search to rank a game. If this is the first game / already ranked game, it will redirect to the appropriate page.
 export default async function Page(props: {
     searchParams?: Promise<{
         id?: string;

@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
+// For when user is trying to rank a game, but this is already in their list. 
 export default async function Page() {
   
   const router = useRouter();

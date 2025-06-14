@@ -6,7 +6,7 @@ import { redirect } from 'next/navigation';
 import { revalidatePath } from "next/cache";
 
 
- 
+ // File to setup action calls, which essentially just write to the db from the server. 
 export async function updateDisplayName(id: string, formData: FormData) {
   // Take displayName from form and then add it to supabase. 
   const session = await auth();

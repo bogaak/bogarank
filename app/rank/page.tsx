@@ -5,7 +5,7 @@ import { redirect } from 'next/navigation'
 import RankButton from "@/components/rank-button";
 
 
-
+// Temporary page used to rank games. This is probably going to be removed later. 
 export default async function Page() {
 
   const session = await auth();

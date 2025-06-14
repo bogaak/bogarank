@@ -2,7 +2,7 @@ import { auth } from "@/auth"
 import { createClient } from "@supabase/supabase-js";
 import { Database } from './database.types'
 
-
+// Component to display already ranked games. This displays right now at main page when user logs in / at home page. 
 export async function DisplayRanks() {
     const session = await auth();
     const accessToken = session?.supabaseAccessToken;

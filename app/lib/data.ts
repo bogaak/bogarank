@@ -4,6 +4,7 @@ import { Database } from './database.types'
 
 const ITEMS_PER_PAGE = 10; // temp decision, may adjust later. 
 
+// File used to fetch all kinds of data from the db. 
 export async function fetchGamesPages(query: string) {
     
     const session = await auth();

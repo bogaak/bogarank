@@ -1,6 +1,6 @@
 import { SignUp } from "@/components/sign-up";
 
-
+// New user signup page. Displays after user logs in using OAuth.
 export default async function Page() {
   
   return (

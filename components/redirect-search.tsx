@@ -1,5 +1,6 @@
 'use client';
 
+// Component added on Home page to redirect to search page when clicked on. 
 import { useRouter } from "next/navigation"
 export function SearchGame() {
     const router = useRouter();

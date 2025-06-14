@@ -2,7 +2,8 @@
 
 import { useSearchParams, usePathname, useRouter } from 'next/navigation';
 import { useDebouncedCallback } from 'use-debounce'; 
- 
+
+// Search component where users can search for games, updates the URL with search query to get games. 
 export default function Search({ placeholder }: { placeholder: string }) {
     const searchParams = useSearchParams();
     const { replace } = useRouter();

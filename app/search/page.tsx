@@ -7,6 +7,7 @@ import { fetchGamesPages } from "../lib/data";
 import Pagination from "@/components/pagination";
 import { DisplayGames } from "@/components/display-games";
 
+// Search page. Need to fix pagination to just go 1 page up / down at a time instead of all. 
 export default async function Page(props: {
   searchParams?: Promise<{
     query?: string;

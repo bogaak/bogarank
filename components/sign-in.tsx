@@ -1,6 +1,7 @@
 
 import { signIn } from "@/auth"
- 
+
+// basic sign in with Google. Explore other options to sign in with Discord, etc.
 export default function SignIn() {
   return (
     <form

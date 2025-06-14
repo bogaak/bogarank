@@ -1,9 +1,7 @@
 import NextAuth from "next-auth"
 import Google from "next-auth/providers/google"
 import { SupabaseAdapter } from "@auth/supabase-adapter"
-import jwt from "jsonwebtoken"
-import { SignJWT, jwtVerify } from "jose"
-import { access } from "fs"
+import { SignJWT } from "jose"
  
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [Google],

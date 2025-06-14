@@ -1,6 +1,7 @@
 import { updateDisplayName } from "@/app/lib/actions"
 import { auth } from "@/auth"
 
+// on signup, we ask user to enter a display name.
 export async function SignUp() {
 
     const session = await auth();

@@ -6,7 +6,7 @@ import { redirect } from 'next/navigation'
 import { DisplayRanks } from "@/components/display-ranks";
 import { SearchGame } from "@/components/redirect-search"
 
-
+// If user is logged in, it will display their ranks and allow them to search for a game to rank. If not, it's gonna redirect to the signup page.
 export default async function Page() {
   const session = await auth();
   

@@ -5,7 +5,7 @@ import { Database } from './database.types'
 import { fetchGames } from "@/app/lib/data";
 import RankButton from "@/components/rank-button";
 
-
+// Displaying games that users can click to rank. 
 export async function DisplayGames({query, currentPage}: {query: string, currentPage: number}) {
 
     const games = await fetchGames(query, currentPage);
