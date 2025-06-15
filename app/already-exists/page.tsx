@@ -4,16 +4,16 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
 // For when user is trying to rank a game, but this is already in their list. 
-export default async function Page() {
+export default function Page() {
   
   const router = useRouter();
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      router.push('/search'); // Change '/search' to your target route
-    }, 2000); // Redirect after 3 seconds
+      router.push('/search'); 
+    }, 2000); 
 
-    return () => clearTimeout(timer); // Cleanup on unmount
+    return () => clearTimeout(timer);
   }, [router]);
 
 

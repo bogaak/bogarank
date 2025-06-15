@@ -36,7 +36,7 @@ export default async function Page(props: {
 
   if (games_list === null){
     games_list = [{id: id, name: game}]; // maybe add a prompt to notify user that since this is the first ranked one, we dont need to actually do binary search...
-    rankGame(games_list);
+    await rankGame(games_list);
     redirect("/home"); // when u insert, it displays an empty screen, then redirects. Need to fix so that it displays something maybe...
   }
 

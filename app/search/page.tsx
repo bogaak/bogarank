@@ -1,7 +1,3 @@
-import { auth } from "@/auth"
-import { createClient } from "@supabase/supabase-js";
-import { Database } from './database.types'
-import { redirect } from 'next/navigation'
 import Search from "@/components/search"
 import { fetchGamesPages } from "../lib/data";
 import Pagination from "@/components/pagination";

@@ -1,11 +1,13 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useRouter } from 'react';
 import { rankGame } from '@/app/lib/actions';
 import { redirect } from 'next/navigation';
 
 // After a user picks a game to rank, and it's not in their list, we do binary search to find the right place to add to list, and update db. 
 const RankingGame = (props: any) => {
+  const router = useRouter();
+
   let gameList = props.gameList;
   const gameName = props.gameName;
   
@@ -45,7 +47,7 @@ const RankingGame = (props: any) => {
     rankGame(newList);
 
     setTimeout(() => {
-        redirect('/home');
+        router.push('/home');
     }, 1000);
   };
 
