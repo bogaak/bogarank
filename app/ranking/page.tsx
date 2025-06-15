@@ -51,8 +51,7 @@ export default async function Page(props: {
     redirect("/home"); // when u insert, it displays an empty screen, then redirects. Need to fix so that it displays something maybe...
   }
 
-  // If the game is already in the list, 
-  console.log(games_list);
+  // If the game is already in the list, redirect.
   if (games_list.some(g => g.id === id)) {
     redirect("/already-exists");
   }
