@@ -22,7 +22,6 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
   }
 
   const handleNext = () => {
-    console.log("click!");
     if (currentPage <= totalPages) {
       router.push(createPageURL(currentPage + 1));
     }

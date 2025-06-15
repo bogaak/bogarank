@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
-import { Database } from '@/database.types'
 import RankButton from "@/components/rank-button";
 
 
@@ -26,8 +25,6 @@ export function DisplayGames() {
   }, [query, page])
 
   if (loading) return <p>Loading games...</p>
-
-  console.log("Games fetched:", games);
 
   return (
     <div className="grid">

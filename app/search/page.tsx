@@ -22,7 +22,7 @@ export default async function Page(props: {
       <h1> Search for a game here!</h1>
       <Search placeholder="Search for a game here..."></Search>
       <p></p>
-      <DisplayGames query={query} currentPage={currentPage}></DisplayGames>
+      <DisplayGames></DisplayGames>
       <p></p>
       <p></p>
       <div className="items-end">
