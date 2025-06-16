@@ -1,23 +1,36 @@
+'use client'
 
-import { auth } from "@/auth"
-import { createClient } from "@supabase/supabase-js";
-import { Database } from './database.types'
-import { fetchGames } from "@/app/lib/data";
+import { useEffect, useState } from 'react'
+import { useSearchParams } from 'next/navigation'
 import RankButton from "@/components/rank-button";
 
-// Displaying games that users can click to rank. 
-export async function DisplayGames({query, currentPage}: {query: string, currentPage: number}) {
 
-    const games = await fetchGames(query, currentPage);
-    const listGames = games!.map((game: Database.games) => (
-        <li key={game.id}>
-            <RankButton game_id={game.id} name={game.name}></RankButton>
-        </li>
-    ))
-    return (
-        <div>
-            <ul>{listGames}</ul>
-        </div>
-    )
-    
+
+export function DisplayGames() {
+  const searchParams = useSearchParams()
+  const query = searchParams.get('query') || ''
+  const page = parseInt(searchParams.get('page') || '1', 10)
+
+  const [games, setGames] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    setLoading(true)
+    fetch(`/api/games?query=${query}&page=${page}`)
+      .then(res => res.json())
+      .then(data => {
+        setGames(data)
+        setLoading(false)
+      })
+  }, [query, page])
+
+  if (loading) return <p>Loading games...</p>
+
+  return (
+    <div className="grid">
+      {games.map((game: any) => (
+        <RankButton key={game.id} game_id={game.id} name={game.name} />
+      ))}
+    </div>
+  )
 }

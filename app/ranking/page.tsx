@@ -1,6 +1,6 @@
 import { auth } from "@/auth"
 import { createClient } from "@supabase/supabase-js";
-import { Database } from './database.types'
+import { Database } from '@/database.types'
 import { redirect } from 'next/navigation'
 import RankingGame from "@/components/rank-game";
 import { rankGame } from "../lib/actions";
@@ -31,17 +31,28 @@ export default async function Page(props: {
     }
   )
 
-  const result = await supabase.from("user_ranks").select("games").eq('id', session?.user?.id);
-  let games_list = result.data![0]["games"]; //pass this to binarysearch component if its not null. 
+  const userId: string = session?.user?.id ?? '';
+
+  if (!userId) {
+    redirect("/home");
+  }
+
+  type Game = {
+    id: string;
+    name: string;
+  }
+  
+  const result = await supabase.from("user_ranks").select("games").eq('id', userId);
+  let games_list = result.data![0]["games"] as Game[]; //pass this to binarysearch component if its not null. 
 
   if (games_list === null){
     games_list = [{id: id, name: game}]; // maybe add a prompt to notify user that since this is the first ranked one, we dont need to actually do binary search...
-    rankGame(games_list);
+    await rankGame(games_list);
     redirect("/home"); // when u insert, it displays an empty screen, then redirects. Need to fix so that it displays something maybe...
   }
 
-  // If the game is already in the list, 
-  if (games_list.some((g: { id: string }) => g.id === id)) {
+  // If the game is already in the list, redirect.
+  if (games_list.some(g => g.id === id)) {
     redirect("/already-exists");
   }
   
